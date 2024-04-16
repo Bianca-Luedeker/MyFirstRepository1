@@ -1,0 +1,80 @@
+---
+title: "Assignment 2: Data Frames and Importing Data"
+author: "Bianca Luedeker"
+date: '2023-01-23'
+output: pdf_document
+---
+
+
+
+## Tasks
+Today we will be reading in excel file and csv files.  Before starting the problems, we are going to create a project where we can store all the files we will be using and creating.  
+
+Go to the File tab and select New Project... 
+Select New Directory then New Project.
+Title your Project STA444 or something more creative.  Save your project to your bonsai drive or your download folders.  
+
+Let's make sure everything worked.  Close out of R, find the project folder and open the project.  Now we are in the correct directory (folder).  Save this assignment in your STA444 directory.
+
+## Problems 
+
+1. Go to the website https://www.lock5stat.com/datasets3e/, find the Cricket 
+Chirps dataset and duplicate it "by hand" using the dataframe function.
+
+
+2.  Extract the Chirps column and find the mean and standard deviation of the chirps.
+
+3.  Extract the value that is in row 5 column 1 of the Chirps dataset.
+
+4.  Go to the website https://www.lock5stat.com/datasets3e/, download the cerealdataset to your computer as an xlsx file. Save the file to your STA44 folder. Read in the file.  Find the mean of sugar content of the cereals.
+
+5.  Go to the website https://www.lock5stat.com/datasets3e/, read in the bike 
+commute dataset directly from the internet as a csv file. Find the mean top speed. 
+
+6.  Is month coded as a factor?  If not, change it to a factor.
+
+
+
+## Chapter 2 Code
+The word after r in the code chunk is the label for that code chunk.  I am 
+calling this one packages.  This is where we will load the required packages.
+
+```{r packages}
+library(tidyverse)
+```
+
+
+Here is an example of how to make a data frame.
+
+```{r dataframe_ex}
+pokemon <- data.frame(
+  type = c("pikachu", "dugtrio", "pinsir", "scyther"),
+  height = c(5, 12, 36, 42),
+  weight = c(22, 35, 118, 125)
+)
+pokemon
+pokemon$weightkg <- pokemon$weight*2.205
+```
+
+We want to be able to import all types of data.  Here is how 
+we can import csv, xlsx, txt, etc.
+
+```{r import_data_ex}
+library(readr)
+BodyFat <- read_csv("https://www.lock5stat.com/datasets3e/BodyFat.csv")
+library(readxl)
+BikeCommute <- read_excel("BikeCommute.xlsx")
+```
+  
+  
+```{r datatypes}  
+eye_color <- c("blue", "green", "blue", "green", "brown", "brown", "brown")
+str(eye_color)
+eye_color <- as.factor(eye_color)
+str(eye_color)
+levels(eye_color)
+as.numeric(eye_color)
+as.logical(eye_color)
+true_false <- c("T", "F", "T", "T", "T", "F")
+true_false <- as.logical(true_false)
+```
